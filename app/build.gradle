@@ -54,6 +54,11 @@ dependencies {
     // CardView
     implementation "androidx.cardview:cardview:$support_library_version"
 
+    // Database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:2.1.0-alpha06"
+
     //Tests
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"

@@ -42,6 +42,10 @@ ext{
     // Parser
     gson_version = '2.8.5'
 
+    // DB
+    room_version = '2.2.3'
+    debug_db_version = '1.0.6'
+
     //Test
     junit_version = '4.12'
     mockito_version = '2.7.1'
