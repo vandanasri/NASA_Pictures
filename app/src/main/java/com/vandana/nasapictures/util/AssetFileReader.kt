@@ -4,18 +4,14 @@ import android.content.Context
 import java.io.InputStream
 
 
-class AssetFileReader(context: Context, fileName: String) {
-
-    private val mContext:Context = context
-    private val fName :String = fileName
-
+object AssetFileReader {
 
     //function to read json file from Asset folder
 
-        fun readJSONFromAsset(): String? {
+        fun readJSONFromAsset(context: Context,fileName: String): String? {
             var json: String? = null
             try {
-                val  inputStream:InputStream = mContext.assets.open(fName)
+                val  inputStream:InputStream = context.assets.open(fileName)
                 json = inputStream.bufferedReader().use{it.readText()}
             } catch (ex: Exception) {
                 ex.printStackTrace()

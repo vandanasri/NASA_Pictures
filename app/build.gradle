@@ -27,7 +27,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
@@ -48,4 +47,17 @@ dependencies {
 
     // GSON Parser
     implementation "com.google.code.gson:gson:$gson_version"
+
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$support_library_version"
+
+    // CardView
+    implementation "androidx.cardview:cardview:$support_library_version"
+
+    //Tests
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+    androidTestImplementation "android.arch.core:core-testing:$core_testing_version"
+
 }

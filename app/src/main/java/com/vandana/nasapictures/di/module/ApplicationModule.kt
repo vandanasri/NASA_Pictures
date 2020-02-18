@@ -1,9 +1,9 @@
-package com.vandana.nasapictures.ui.module
+package com.vandana.nasapictures.di.module
 
 import android.app.Application
 import android.content.Context
 import com.vandana.nasapictures.NasaPictureApplication
-import com.vandana.nasapictures.ui.ApplicationContext
+import com.vandana.nasapictures.di.ApplicationContext
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
