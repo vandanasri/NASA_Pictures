@@ -3,7 +3,7 @@ package com.vandana.nasapictures
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import com.vandana.nasapictures.data.Constants
-import com.vandana.nasapictures.util.AssetFileReader
+import com.vandana.nasapictures.util.common.AssetFileReader
 import org.junit.Before
 import org.junit.Test
 import org.junit.Assert.assertEquals

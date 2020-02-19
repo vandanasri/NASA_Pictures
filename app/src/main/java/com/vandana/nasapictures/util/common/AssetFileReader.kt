@@ -1,4 +1,4 @@
-package com.vandana.nasapictures.util
+package com.vandana.nasapictures.util.common
 
 import android.content.Context
 import java.io.InputStream
