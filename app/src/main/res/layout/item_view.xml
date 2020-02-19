@@ -12,7 +12,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:margin="8dp">
+    >
 
     <ImageView
         android:id="@+id/ivUrlImage"

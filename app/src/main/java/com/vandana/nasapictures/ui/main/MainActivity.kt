@@ -1,14 +1,25 @@
 package com.vandana.nasapictures.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import com.vandana.nasapictures.R
+import com.vandana.nasapictures.di.component.ActivityComponent
+import com.vandana.nasapictures.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<MainViewModel>() {
+
+    override fun provideLayoutId(): Int = R.layout.activity_main
+
+    override fun injectDependencies(activityComponent: ActivityComponent) = activityComponent.inject(this)
+
+    override fun setupView(savedInstanceState: Bundle?) {}
+
+    override fun onResume() {
+        super.onResume()
 
     }
+
+
+
 }

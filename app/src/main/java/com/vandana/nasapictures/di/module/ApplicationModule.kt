@@ -8,6 +8,7 @@ import com.vandana.nasapictures.data.db.DatabaseService
 import com.vandana.nasapictures.di.ApplicationContext
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 
@@ -27,6 +28,9 @@ class ApplicationModule(private  val  application: NasaPictureApplication) {
     @Singleton
     fun provideDatabaseService(): DatabaseService =
         Room.databaseBuilder(application,DatabaseService::class.java,"nasa_db").build()
+
+    @Provides
+    fun provideCompositeDisposable() = CompositeDisposable()
 
 
 }
