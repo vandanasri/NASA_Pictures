@@ -1,4 +1,4 @@
-package com.vandana.nasapictures
+package com.vandana.nasapictures.util.common
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry

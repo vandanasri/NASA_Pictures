@@ -2,6 +2,7 @@ package com.vandana.nasapictures.di.component
 
 import com.vandana.nasapictures.di.ActivityScope
 import com.vandana.nasapictures.di.module.ActivityModule
+import com.vandana.nasapictures.ui.detail.DetailActivity
 import com.vandana.nasapictures.ui.main.MainActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -12,4 +13,6 @@ import javax.inject.Singleton
 interface ActivityComponent {
 
     fun inject(activity: MainActivity)
+
+    fun inject(detailActivity: DetailActivity)
 }

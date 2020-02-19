@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 
 @Module
-class ApplicationModule(private  val  application: NasaPictureApplication) {
+class ApplicationModule(private val application: NasaPictureApplication) {
 
     @Provides
     @Singleton
@@ -27,7 +27,7 @@ class ApplicationModule(private  val  application: NasaPictureApplication) {
     @Provides
     @Singleton
     fun provideDatabaseService(): DatabaseService =
-        Room.databaseBuilder(application,DatabaseService::class.java,"nasa_db").build()
+        Room.databaseBuilder(application, DatabaseService::class.java, "nasa_db").build()
 
     @Provides
     fun provideCompositeDisposable() = CompositeDisposable()
