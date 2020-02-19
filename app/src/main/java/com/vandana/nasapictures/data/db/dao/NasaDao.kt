@@ -13,10 +13,13 @@ interface NasaDao {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(entity: NasaEntity) : Completable
+    fun insert(entity: List<NasaEntity> ) : Completable
 
     @Delete
     fun delete(entity: NasaEntity)
 
+
+    @Query("SELECT COUNT(title) FROM nasa_table")
+    fun getDataCount() : Flowable<Int>
 
 }

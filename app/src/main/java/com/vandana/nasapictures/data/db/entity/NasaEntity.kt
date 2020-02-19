@@ -11,7 +11,7 @@ data class NasaEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @NotNull
-    var id: Integer,
+    var id: Int,
 
     @ColumnInfo(name = "title")
     @NotNull
