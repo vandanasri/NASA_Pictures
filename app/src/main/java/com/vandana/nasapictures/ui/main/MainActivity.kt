@@ -1,9 +1,8 @@
-package com.vandana.nasapictures
+package com.vandana.nasapictures.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.vandana.nasapictures.data.Constants
-import com.vandana.nasapictures.util.AssetFileReader
+import com.vandana.nasapictures.R
 
 class MainActivity : AppCompatActivity() {
 
