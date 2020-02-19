@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 interface NasaDao {
 
     @Query("SELECT * FROM nasa_table")
-    fun getAllNasaData() : Flowable<NasaEntity>
+    fun getAllNasaData() : Flowable<List<NasaEntity>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

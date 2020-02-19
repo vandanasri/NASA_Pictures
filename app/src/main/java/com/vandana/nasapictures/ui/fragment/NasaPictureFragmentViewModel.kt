@@ -1,92 +1,69 @@
 package com.vandana.nasapictures.ui.fragment
 
-
-
-import android.content.Context
 import android.util.Log
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.vandana.nasapictures.data.Constants
+import androidx.lifecycle.MutableLiveData
 import com.vandana.nasapictures.data.db.DatabaseService
 import com.vandana.nasapictures.data.db.entity.NasaEntity
 import com.vandana.nasapictures.data.model.NasaPictureData
 import com.vandana.nasapictures.ui.base.BaseViewModel
-import com.vandana.nasapictures.util.common.AssetFileReader
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 
-class NasaPictureFragmentViewModel (
+class NasaPictureFragmentViewModel(
     compositeDisposable: CompositeDisposable,
     databaseService: DatabaseService
 ) : BaseViewModel(compositeDisposable, databaseService) {
 
+    val nasaDBDataList: MutableLiveData<List<NasaEntity>> = MutableLiveData()
 
 
+    fun insetFileDataIntoDatabase(nasaPictureDataList: ArrayList<NasaPictureData>) {
 
-     fun getDataFromJsonFile(context: Context)
-    {
-        if(getDataCount()==0) {
+        val nasaEntityList = arrayListOf<NasaEntity>()
 
-            val data = AssetFileReader.readJSONFromAsset(context, Constants.FILE_NAME)
-
-            val type = TypeToken.get(ArrayList<NasaPictureData>().javaClass).type
-            val list: ArrayList<NasaPictureData> = Gson().fromJson(data, type)
-        if(list.size >0)
-            insetFileDataIntoDatabase(list)
-
-        }else{
-            getAllNasaPictureData()
+        for ((index, nasaPictureData) in nasaPictureDataList.withIndex()) {
+            nasaEntityList.add(
+                NasaEntity(
+                    index, nasaPictureData.title, nasaPictureData.url,
+                    nasaPictureData.explanation, nasaPictureData.date
+                )
+            )
         }
+
+
+        compositeDisposable.add(
+            databaseService.getNasaDao().insert(nasaEntityList)
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                    {
+                        getAllNasaPictureData()
+                    },
+                    {
+                        Log.d("TAG insetDatabase Error", it.toString())
+                    }
+                )
+        )
+
     }
 
-
-
-  private fun insetFileDataIntoDatabase(nasaPictureDataList : ArrayList<NasaPictureData>){
-
-      val nasaEntityList: ArrayList<NasaEntity> = ArrayList()
-
-      for(nasaPictureData in nasaPictureDataList){
-          nasaEntityList.add(NasaEntity(1,nasaPictureData.title,nasaPictureData.url,
-              nasaPictureData.explanation,nasaPictureData.date))
-      }
-
-     compositeDisposable.add(
-         databaseService.getNasaDao().insert(nasaEntityList)
-             .subscribe(
-                 {
-                    getAllNasaPictureData()
-                 },
-                 {
-                     Log.d("TAG", it.toString())
-                 }
-             )
-     )
-
- }
-
-
-
-     private fun getAllNasaPictureData() {
+    fun getAllNasaPictureData() {
         compositeDisposable.add(
             databaseService.getNasaDao().getAllNasaData()
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
-
+                        nasaDBDataList.postValue(it)
                     },
                     {
-
+                        Log.d("TAG readDatabase Error", it.toString())
                     }
                 )
         )
     }
 
 
-
-
-
-     private fun getDataCount() : Int {
+    fun getDataCount(): Int {
         var dataCount = 0
         compositeDisposable.add(
             databaseService.getNasaDao().getDataCount()
@@ -96,6 +73,7 @@ class NasaPictureFragmentViewModel (
                         dataCount = it
                     },
                     {
+                        Log.d("TAG getDataCount Error", it.toString())
                     }
                 )
         )
@@ -104,5 +82,10 @@ class NasaPictureFragmentViewModel (
 
     override fun onCreate() {
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 }
